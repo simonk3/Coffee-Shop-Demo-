@@ -1,0 +1,46 @@
+<%-
+include('partials/header', {
+  meta: {
+    title: richTextAsPlain(productsDocument.data.meta_title),
+    description: richTextAsPlain(productsDocument.data.meta_description),
+    social: productsDocument.data.social,
+    canonicalUrl: getCanonicalUrl(productsDocument)
+  }
+});
+%>
+
+<div class="l-wrapper">
+  <hr class="separator-hr"/>
+</div>
+
+<section class="products-section">
+  <div class="l-wrapper">
+    <header class="products-grid-header">
+      <div class="products-grid-header-title">
+        <%- richTextAsHtml(productsDocument.data.title) %>
+      </div>
+    </header>
+  </div>
+  <div class="products-grid-items-wrapper">
+    <% productDocuments.forEach(function (document) { %>
+      <a class="products-grid-item-wrapper" href="<%= linkResolver(document) %>">
+        <img
+          class="products-grid-item-image"
+          src="<%= document.data.product_image.url %>"
+          alt="<%= document.data.product_image.alt %>"
+        />
+        <p class="products-grid-item-title">
+          <% const product = document.data.product %>
+          <%= product ? product.title : '' %>
+        </p>
+        <p class="products-grid-item-country">
+          <%= product ? product.country : '' %>
+        </p>
+      </a>
+    <% }); %>
+  </div>
+</section>
+
+<div data-wio-id="<%= productsDocument.id %>"></div>
+
+<%- include('partials/footer'); %>

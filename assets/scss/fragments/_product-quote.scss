@@ -1,0 +1,81 @@
+.product-quote-inner {
+  position: relative;
+
+  @media (max-width: 1190px) {
+    text-align: center;
+  }
+}
+
+.product-quote-box {
+  width: 664px;
+  height: 520px;
+  padding: 64px 74px;
+  background: #121212 no-repeat center;
+  background-size: cover;
+  color: white;
+
+  .product-quote-inner--reverse & {
+    margin-left: auto;
+  }
+
+  @media (max-width: 1190px) {
+    max-width: 520px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 550px) {
+    padding: 30px;
+  }
+}
+
+.product-quote-box-quote-text {
+  font-family: $font-mono;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.786;
+
+  @media (max-width: 550px) {
+    font-size: 22px;
+    line-height: 1.909;
+  }
+}
+
+.product-quote-box-quote-author {
+  margin-top: 20px;
+}
+
+.product-quote-product-description {
+  margin-top: 114px;
+  max-width: 520px;
+  font-family: $font-mono;
+  font-size: 17px;
+  line-height: 2.353;
+
+  .product-quote-inner--reverse & {
+    margin-left: auto;
+  }
+
+  @media (max-width: 1190px) {
+    margin: 70px auto 0;
+  }
+}
+
+.product-quote-product-image {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 564px;
+  height: 564px;
+  object-fit: cover;
+
+  .product-quote-inner--reverse & {
+    right: none;
+    left: 0;
+  }
+
+  @media (max-width: 1190px) {
+    display: none;
+  }
+}

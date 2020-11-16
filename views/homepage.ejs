@@ -1,0 +1,57 @@
+<%-
+include('partials/header', {
+  meta: {
+    title: richTextAsPlain(document.data.meta_title),
+    description: richTextAsPlain(document.data.meta_description),
+    social: document.data.social,
+    canonicalUrl: getCanonicalUrl(document)
+  }
+});
+%>
+
+<header class="homepage-header">
+  <div class="l-wrapper">
+    <div class="homepage-header-title">
+      <%- richTextAsHtml(document.data.title) %>
+    </div>
+  </div>
+</header>
+
+<section class="homepage-banner">
+  <img class="homepage-banner-image" src="<%= document.data.banner_image.url %>" alt="<%= document.data.banner_image.alt %>"/>
+  <div class="homepage-banner-box-wrapper">
+    <div class="homepage-banner-box">
+      <%- richTextAsHtml(document.data.banner_text) %>
+    </div>
+  </div>
+</section>
+
+<div class="homepage-slices-wrapper">
+  <% document.data.body.forEach(function (slice) { %>
+    <% if (slice.slice_type === 'cta_banner') { %>
+      <div class="homepage-slice-wrapper">
+        <%- include('partials/slices/cta-banner', { slice }); %>
+      </div>
+    <% } else if (slice.slice_type === 'featured_items') { %>
+      <div class="homepage-slice-wrapper">
+        <%- include('partials/slices/products-grid', { slice }); %>
+      </div>
+    <% } else if (slice.slice_type === 'big_bullet_item') { %>
+      <div class="homepage-slice-wrapper">
+        <%- include('partials/slices/numeroted-items', { slice }); %>
+      </div>
+    <% } else if (slice.slice_type === 'separator') { %>
+      <div class="homepage-slice-wrapper">
+        <%- include('partials/slices/separator'); %>
+      </div>
+    <% } else if (slice.slice_type === 'text_block') { %>
+      <div class="homepage-slice-wrapper">
+        <%- include('partials/slices/text-block', { slice }); %>
+      </div>
+    <% } %>
+  <% }); %>
+</div>
+
+<div data-wio-id="<%= document.id %>"></div>
+
+<%- include('partials/footer'); %>
